@@ -1130,8 +1130,15 @@ def indicator_export(households, buildings, jobs, parcels, zones, distlrg, distm
             if id_col == 'zone_id':
                 #ADJUSTPOPULATION
                 eq = pd.read_csv("data/TAZCTYEQ.csv", index_col="Z")
+                
+                eq.to_csv(r"E:\Projects\REMM2-2019\data\test\eq.csv") # remove
+                summary_geog.to_csv(r"E:\Projects\REMM2-2019\data\test\summary_geog.csv") # remove
+                
                 summary_geog['COUNTY'] = eq.COUNTY.reindex(summary_geog.index).fillna(0)
                 pop_control = pd.read_csv("./data/population_controls.csv")
+                
+                pop_control.to_csv(r"E:\Projects\REMM2-2019\data\test\pop_control.csv") # remove
+                
                 pop_control = pop_control[pop_control.year == year]
                 summary_geog['pop_adjust'] = 0
                 summary_geog.pop_adjust[(summary_geog.households > 0) & (summary_geog.population/summary_geog.households > 1.5)]= 1
